@@ -18,8 +18,8 @@ export type GameState = Readonly<{
   isMyTurn: boolean
 }>
 
-const applyGameStarted = (state: GameState, event: Events.GameStarted): GameState => {
-    throw "TODO"
+export const applyGameStarted = (state: GameState, event: Events.GameStarted): GameState => {
+    return state
 }
 
 const applyFirstPlayerPicked = (state: GameState, event: Events.FirstPlayerPicked): GameState => {
