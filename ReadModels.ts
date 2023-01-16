@@ -18,6 +18,30 @@ export type GameState = Readonly<{
   isMyTurn: boolean
 }>
 
+const applyGameStarted = (state: GameState, event: Events.GameStarted): GameState => {
+    throw "TODO"
+}
+
+const applyFirstPlayerPicked = (state: GameState, event: Events.FirstPlayerPicked): GameState => {
+    throw "TODO"
+}
+
+const applyTurnStarted = (state: GameState, event: Events.TurnStarted): GameState => {
+    throw "TODO"
+}
+
+const applyManaSlotGranted = (state: GameState, event: Events.ManaSlotGranted): GameState => {
+    throw "TODO"
+}
+
+const applyManaRefilled = (state: GameState, event: Events.ManaRefilled): GameState => {
+    throw "TODO"
+}
+
+const applyCardDrawn = (state: GameState, event: Events.CardDrawn): GameState => {
+    throw "TODO"
+}
+
 export function buildStateFor(
   playerID: number,
   events: ReadonlyArray<Events.GameEvent>
@@ -41,25 +65,29 @@ export function buildStateFor(
       isMyTurn: false
     }
 
-    const x : GameState = events.reduce((acc, evt) => {
+    return events.reduce((acc: GameState, evt: Events.GameEvent): GameState => {
       switch (evt.type) {
         case "GameStarted":
-          throw "TODO";
+          return applyGameStarted(acc, evt.event);
+
         case "FirstPlayerPicked":
-          throw "TODO";
+          return applyFirstPlayerPicked(acc, evt.event);
+
         case "TurnStarted":
-          throw "TODO";
+          return applyTurnStarted(acc, evt.event);
+
         case "ManaSlotGranted":
-          throw "TODO";
+          return applyManaSlotGranted(acc, evt.event);
+
         case "ManaRefilled":
-          throw "TODO";
+          return applyManaRefilled(acc, evt.event);
+
         case "CardDrawn":
-          throw "TODO";
-      
+          return applyCardDrawn(acc, evt.event);
+
         default:
           const _: never = evt
+          return acc
       }
     }, initialState);
-
-    return initialState;
 }
