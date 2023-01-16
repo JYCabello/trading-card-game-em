@@ -14,14 +14,15 @@ export type GameState = Readonly<{
     handSize: number;
     manaSlots: number;
     manaSpent: number;
-  }>
+  }>,
+  isMyTurn: boolean
 }>
 
 export function buildStateFor(
   playerID: number,
   events: ReadonlyArray<Events.GameEvent>
   ): GameState {
-    const x: GameState = {
+    return {
       myself: {
         hp: 30,
         deck: [0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8],
@@ -35,9 +36,7 @@ export function buildStateFor(
         handSize: 0,
         manaSlots: 0,
         manaSpent: 0
-      }
+      },
+      isMyTurn: false
     }
-    x.myself.hp = 45
-    return x
 }
-  
