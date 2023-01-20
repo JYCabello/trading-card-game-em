@@ -19,75 +19,75 @@ export type GameState = Readonly<{
 }>
 
 export const applyGameStarted = (state: GameState, event: Events.GameStarted): GameState => {
-    return state
+  return state
 }
 
 const applyFirstPlayerPicked = (state: GameState, event: Events.FirstPlayerPicked): GameState => {
-    throw "TODO"
+  throw "TODO"
 }
 
 const applyTurnStarted = (state: GameState, event: Events.TurnStarted): GameState => {
-    throw "TODO"
+  throw "TODO"
 }
 
 const applyManaSlotGranted = (state: GameState, event: Events.ManaSlotGranted): GameState => {
-    throw "TODO"
+  throw "TODO"
 }
 
 const applyManaRefilled = (state: GameState, event: Events.ManaRefilled): GameState => {
-    throw "TODO"
+  throw "TODO"
 }
 
 const applyCardDrawn = (state: GameState, event: Events.CardDrawn): GameState => {
-    throw "TODO"
+  throw "TODO"
 }
 
 export function buildStateFor(
   playerID: number,
   events: ReadonlyArray<Events.GameEvent>
-  ): GameState {
+): GameState {
 
-    const initialState : GameState = {
-      myself: {
-        hp: 30,
-        deck: [0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8],
-        hand: [],
-        manaSlots: 0,
-        manaSpent: 0
-      },
-      opponent: {
-        hp: 30,
-        deckSize: 20,
-        handSize: 0,
-        manaSlots: 0,
-        manaSpent: 0
-      },
-      isMyTurn: false
+  const initialState : GameState = {
+    myself: {
+      hp: 30,
+      deck: [0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8],
+      hand: [],
+      manaSlots: 0,
+      manaSpent: 0
+    },
+    opponent: {
+      hp: 30,
+      deckSize: 20,
+      handSize: 0,
+      manaSlots: 0,
+      manaSpent: 0
+    },
+    isMyTurn: false
+  }
+
+  return events.reduce((acc: GameState, evt: Events.GameEvent): GameState => {
+    switch (evt.type) {
+      case "GameStarted":
+        return applyGameStarted(acc, evt.event);
+
+      case "FirstPlayerPicked":
+        return applyFirstPlayerPicked(acc, evt.event);
+
+      case "TurnStarted":
+        return applyTurnStarted(acc, evt.event);
+
+      case "ManaSlotGranted":
+        return applyManaSlotGranted(acc, evt.event);
+
+      case "ManaRefilled":
+        return applyManaRefilled(acc, evt.event);
+
+      case "CardDrawn":
+        return applyCardDrawn(acc, evt.event);
+
+      default:
+        const _: never = evt
+      return acc
     }
-
-    return events.reduce((acc: GameState, evt: Events.GameEvent): GameState => {
-      switch (evt.type) {
-        case "GameStarted":
-          return applyGameStarted(acc, evt.event);
-
-        case "FirstPlayerPicked":
-          return applyFirstPlayerPicked(acc, evt.event);
-
-        case "TurnStarted":
-          return applyTurnStarted(acc, evt.event);
-
-        case "ManaSlotGranted":
-          return applyManaSlotGranted(acc, evt.event);
-
-        case "ManaRefilled":
-          return applyManaRefilled(acc, evt.event);
-
-        case "CardDrawn":
-          return applyCardDrawn(acc, evt.event);
-
-        default:
-          const _: never = evt
-          return acc
-      }
-    }, initialState);
+  }, initialState);
 }
