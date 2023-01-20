@@ -1,5 +1,5 @@
-import {GameStarted} from '../Events';
-import { applyGameStarted, GameState } from '../ReadModels'
+import { GameStarted } from '../src/Events';
+import { applyGameStarted, GameState } from '../src/ReadModels'
 
 describe('applyGameStarted', () => {
   it('does nothing with the state', () => {
