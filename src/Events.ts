@@ -1,6 +1,7 @@
 export type GameStarted = {
-  id: number,
-  players: number[]
+  id: string,
+  playerOne: { id: number; initialHand: number[] },
+  playerTwo: { id: number; initialHand: number[] }
 }
 
 export type FirstPlayerPicked = {
