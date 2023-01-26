@@ -1,6 +1,7 @@
 import * as Events from "./Events"
 
 export type GameState = Readonly<{
+  playerId: number;
   myself: Readonly<{
     hp: number;
     deck: ReadonlyArray<number>;
@@ -43,11 +44,12 @@ const applyCardDrawn = (state: GameState, event: Events.CardDrawn): GameState =>
 }
 
 export function buildStateFor(
-  playerID: number,
+  playerId: number,
   events: ReadonlyArray<Events.GameEvent>
 ): GameState {
 
   const initialState : GameState = {
+    playerId: playerId,
     myself: {
       hp: 30,
       deck: [0,0,1,1,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,8],

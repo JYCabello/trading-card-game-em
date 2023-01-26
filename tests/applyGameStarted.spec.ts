@@ -24,7 +24,7 @@ describe('applyGameStarted', () => {
 
     const evt: GameStarted = {
       id: '861556bc-1c09-42c4-bdf9-e7ac27ae7a53',
-      playerOne: { id: 983274, initialHand: [3, 3, 6] }
+      playerOne: { id: 983274, initialHand: [3, 3, 6] },
       playerTwo: { id: 39874, initialHand: [1, 0, 3] }
     };
 
