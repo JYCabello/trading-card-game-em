@@ -70,22 +70,22 @@ export function buildStateFor(
   return events.reduce((acc: GameState, evt: Events.GameEvent): GameState => {
     switch (evt.type) {
       case "GameStarted":
-        return applyGameStarted(acc, evt.event);
+        return applyGameStarted(acc, evt.value);
 
       case "FirstPlayerPicked":
-        return applyFirstPlayerPicked(acc, evt.event);
+        return applyFirstPlayerPicked(acc, evt.value);
 
       case "TurnStarted":
-        return applyTurnStarted(acc, evt.event);
+        return applyTurnStarted(acc, evt.value);
 
       case "ManaSlotGranted":
-        return applyManaSlotGranted(acc, evt.event);
+        return applyManaSlotGranted(acc, evt.value);
 
       case "ManaRefilled":
-        return applyManaRefilled(acc, evt.event);
+        return applyManaRefilled(acc, evt.value);
 
       case "CardDrawn":
-        return applyCardDrawn(acc, evt.event);
+        return applyCardDrawn(acc, evt.value);
 
       default:
         const _: never = evt

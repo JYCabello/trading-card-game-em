@@ -26,11 +26,14 @@ export type CardDrawn = {
   card: number
 }
 
+type Case<TName extends string, T> =
+  { type: TName, value: T }
+
 
 export type GameEvent =
-  { type: "GameStarted", event: GameStarted } |
-  { type: "FirstPlayerPicked", event: FirstPlayerPicked } |
-  { type: "TurnStarted", event: TurnStarted } |
-  { type: "ManaSlotGranted", event: ManaSlotGranted } |
-  { type: "ManaRefilled", event: ManaRefilled } |
-  { type: "CardDrawn", event: CardDrawn }
+  Case<"GameStarted", GameStarted> |
+  Case<"FirstPlayerPicked", FirstPlayerPicked> |
+  Case<"TurnStarted", TurnStarted> |
+  Case<"ManaSlotGranted", ManaSlotGranted> |
+  Case<"ManaRefilled", ManaRefilled> |
+  Case<"CardDrawn", CardDrawn>
